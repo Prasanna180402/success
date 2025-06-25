@@ -1,0 +1,431 @@
+`index.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anish Kumar Sinha - Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ddd;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #faa61a;
+    }
+    .navbar-nav .nav-link {
+      color: #ddd !important;
+      margin-right: 1.25rem;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link.active {
+      color: #faa61a !important;
+    }
+    .brand-logo {
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ddd;
+      font-size: 1.125rem;
+    }
+    .header-section {
+      padding: 4rem 2rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .header-left {
+      max-width: 520px;
+      z-index: 2;
+    }
+    .hello-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #00e6ff, #0e7fff);
+      color: white;
+      font-weight: 600;
+      padding: 0.25rem 1rem;
+      border-radius: 30px;
+      box-shadow: 0 0 12px #00e6ffa0;
+      margin-bottom: 0.75rem;
+      user-select: none;
+      font-size: 1rem;
+    }
+    .intro-text {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: #ddd;
+    }
+    .intro-name {
+      color: #ddd;
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 6px;
+    }
+    .intro-emoji {
+      display: inline-block;
+      font-size: 1.5rem;
+      vertical-align: middle;
+      margin-left: 0.3rem;
+    }
+    .subtext {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #aaa;
+      margin-bottom: 1.5rem;
+    }
+    .btn-download {
+      background-color: #f06a2f;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+    .btn-download:hover {
+      background-color: #d15523;
+    }
+    .btn-contact {
+      border: 1px solid #ccc;
+      color: #ccc;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    .btn-contact:hover {
+      border-color: #faa61a;
+      color: #faa61a;
+      background: transparent;
+    }
+    .social-icons {
+      position: fixed;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 2;
+    }
+    .social-icons a {
+      color: #bbb;
+      font-size: 1.25rem;
+      transition: color 0.3s ease;
+      text-align: center;
+      width: 32px;
+      height: 32px;
+      
+      line-height: 32px;
+    }
+    .social-icons a:hover {
+      color: #faa61a;
+    }
+    .profile-picture-wrapper {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin-left: auto;
+      z-index: 2;
+    }
+    .profile-picture-wrapper::before {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: 50px;
+      width: 260px;
+      height: 260px;
+      background: #ffec00;
+      border-radius: 70% 30% 30% 70% / 60% 75% 25% 40%;
+      filter: drop-shadow(0 0 15px #c5b900);
+      z-index: -1;
+      transition: all 0.5s ease;
+    }
+    .profile-picture {
+      border-radius: 70% 30% 30% 70% / 60% 75% 25% 40%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+
+    /* Second section stylings */
+    .about-section {
+      position: relative;
+      padding: 4rem 2rem;
+      color: #ccc;
+      overflow: hidden;
+      min-height: 500px;
+    }
+    .about-content {
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: 150px;
+      position: relative;
+      z-index: 2;
+    }
+    .about-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #f1f1f1;
+      margin-bottom: 1.25rem;
+    }
+    .about-title span {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #eee;
+    }
+    .about-text p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      font-weight: 400;
+      color: #aaa;
+      margin-bottom: 1rem;
+    }
+    .bold {
+      font-weight: 700;
+      color: #f1f1f1;
+    }
+    .about-blobs {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: #ffec00;
+      border-radius: 60% 40% 60% 40% / 50% 60% 40% 50%;
+      bottom: 35px;
+      left: 4rem;
+      filter: drop-shadow(0 0 12px #c5b900);
+      z-index: 1;
+      transition: all 0.6s ease;
+    }
+    .about-blob-grey {
+      width: 110px;
+      height: 110px;
+      background: #555;
+      border-radius: 55% 45% 70% 30% / 60% 50% 30% 40%;
+      bottom: 2rem;
+      right: 7rem;
+      filter: drop-shadow(0 0 12px rgba(0,0,0,0.7));
+      z-index: 1;
+      position: absolute;
+    }
+    /* Reuse social icons on left for about section */
+    .about-social {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 2;
+    }
+
+    /* Email text vertical on right */
+    .email-vertical {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      color: #666;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      font-weight: 400;
+      user-select: none;
+      cursor: default;
+      z-index: 2;
+      writing-mode: horizontal-tb;
+    }
+    .footer-divider {
+      margin-top: 2rem;
+      border-top: 1.5px solid #333;
+      max-width: 150px;
+      margin-left: 0;
+      opacity: 0.3;
+    }
+
+    /* Scroll progress bar at bottom center (small line) */
+    .scroll-bar {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: #333;
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 9999;
+    }
+    .scroll-bar-progress {
+      height: 100%;
+      background: #faa61a;
+      width: 0;
+      transition: width 0.25s ease-out;
+    }
+
+    @media (max-width: 992px) {
+      .header-section {
+        display: block;
+        text-align: center;
+      }
+      .header-left {
+        max-width: 100%;
+      }
+      .profile-picture-wrapper {
+        margin: 2rem auto 0 auto;
+        width: 220px;
+        height: 220px;
+      }
+      .profile-picture-wrapper::before {
+        top: 12px;
+        left: 30px;
+        width: 180px;
+        height: 180px;
+      }
+      .profile-picture {
+        width: 220px;
+        height: 220px;
+      }
+      .about-content {
+        margin-right: 0;
+        max-width: 90vw;
+        padding-bottom: 3rem;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+      .about-blobs,
+      .about-blob-grey,
+      .email-vertical {
+        display: none;
+      }
+      .social-icons,
+      .about-social {
+        left: 0.5rem;
+      }
+    }
+    .f{
+        color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #121212;">
+    <div class="container-fluid">
+      <a href="#" class="brand-logo d-flex align-items-center">
+        <i class="fas fa-cog me-2"></i>Anish Kumar Sinha
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks" aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navLinks">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about-section">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          <li class="nav-item ms-3">
+            <button id="themeToggle" class="btn btn-link text-warning fs-4" title="Toggle light/dark mode">
+              <i class="fas fa-sun"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Social Icons Left -->
+  <div class="social-icons d-none d-lg-flex">
+    <a href="https://facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://github.com/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://telegram.org/" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+    <a href="mailto:example@example.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <!-- Header Section -->
+  <section class="header-section d-lg-flex align-items-center justify-content-between container-xl f">
+    <div class="header-left">
+      <div class="hello-badge">Hello!</div>
+      <h1 class="intro-text">I’m <span class="intro-name">Anish <span class="intro-emoji" role="img" aria-label="waving hand">👋</span></span></h1>
+      <p class="subtext">UI/UX Designer, Front-End Developer & Thinker.<br />Based in India.</p>
+      <div>
+        <a href="#" class="btn btn-download me-2">Download CV</a>
+        <a href="#" class="btn btn-contact">Get In Touch!</a>
+      </div>
+    </div>
+
+    <div class="profile-picture-wrapper f">
+      <img src="https://i.pravatar.cc/320?u=anish.sinha" alt="Anish Kumar Sinha" class="profile-picture" />
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about-section" class="about-section container-xl position-relative f">
+
+
+    <div class="about-content">
+      <h2 class="about-title"><span>T</span>his is it. ;)</h2>
+      <div class="about-text">
+        <p>Anish Kr. Sinha is an Indian <span class="bold">UI/UX Designer & Front End Developer</span> with a passion for designing beautiful and functional user experiences. Typically, he's Driven & permanently Curious. He’s obsessed with designing things and even more obsessed with designing cool & clean stuff for the web and mobile. He has been in the business of creating since he hung his first painting on the wall when he was 11.</p>
+        <p>He holds a <span class="bold">bachelor degree in Computer Applications</span>. During his graduation, he has been actively involved in the web design community for the last 3 years. He has designed websites for small businesses, events, nonprofits and more. Currently, he's based in Bihar, India, where he's working as an independent creative.</p>
+        <p>His interests, however, extend beyond the web and he loves helping people with branding and print design. He even loves designing 3D floor plan.</p>
+        <p>When he's not designing, he's probably hanging out with his girlfriend, watching series, sketching or messing around on something inspired by YouTube tutorials.</p>
+      </div>
+      <hr class="footer-divider" />
+    </div>
+
+    <div class="about-blobs"></div>
+    <div class="about-blob-grey"></div>
+
+    <div class="email-vertical" aria-hidden="true">anishkumar.sinha@outlook.com</div>
+  </section>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-bar">
+    <div class="scroll-bar-progress"></div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Scroll progress bar logic
+  const scrollBarProgress = document.querySelector('.scroll-bar-progress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight ? (scrollTop / docHeight) * 100 : 0;
+    scrollBarProgress.style.width = scrollPercent + '%';
+  });
+
+  // Simple theme toggle (dark/light)
+  const themeToggleBtn = document.getElementById('themeToggle');
+  let darkTheme = true;
+
+  themeToggleBtn.addEventListener('click', () => {
+    darkTheme = !darkTheme;
+    if (darkTheme) {
+      document.body.style.backgroundColor = '#121212';
+      document.body.style.color = '#ddd';
+      themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+      document.body.style.backgroundColor = '#fff';
+      document.body.style.color =black;
+      document.body.classList.add='f';
+      themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+  });
+</script>
+
+</body>
+</html>
+
+```
